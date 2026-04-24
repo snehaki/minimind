@@ -41,12 +41,6 @@
 
 > Note: This project is open-sourced under the Apache 2.0 license and is completely free. "2 hours" refers to the measured time to run `1 epoch` of the SFT stage on a single NVIDIA 3090, and "3 CNY" refers to the corresponding GPU rental cost for that duration.
 
-> **Personal note:** I'm using this fork primarily to study the GRPO and DPO training stages. If you're following along for the same reason, I found it helpful to start with the SFT stage first to get a feel for the training loop before jumping into the RL-based methods.
-
----
-
-<div align="center">
-
-![minimind-3](./images/minimind-3.gif)
-
-[🔗 Online Demo](https://
+> **Personal note:** I'm using this fork primarily to study the GRPO and DPO training stages.
+> - **GRPO**: focus on understanding the group relative policy optimization reward signal and how `beta` (KL penalty coefficient) affects training stability.
+> - **DPO**: comparing how different `learning_rate` values (default `1e-5` vs. my experiments with `5e-6`) affect preference alignment quality on small models.
