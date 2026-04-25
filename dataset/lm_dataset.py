@@ -28,8 +28,8 @@ def pre_processing_chat(conversations, add_system_ratio=0.2):
             return [{'role': 'system', 'content': random.choice(SYSTEM_PROMPTS)}] + conversations
     return conversations
 
-def post_processing_chat(prompt_content, empty_think_ratio=0.2):
-    # 以80%概率移除空思考标签
+def post_processing_chat(prompt_content, empty_think_ratio=0.3):
+    # 以(1-empty_think_ratio)的概率移除空思考标签
     # NOTE: bumped empty_think_ratio from 0.2 to 0.3 so more empty <think> tags are kept during training
     if '<think>\n\n</think>\n\n' in prompt_content and random.random() > empty_think_ratio:
         prompt_content = prompt_content.replace('<think>\n\n</think>\n\n', '')
@@ -63,5 +63,4 @@ class SFTDataset(Dataset):
         self.max_length = max_length
         features = Features({'conversations': [{'role': Value('string'), 'content': Value('string'), 'reasoning_content': Value('string'), 'tools': Value('string'), 'tool_calls': Value('string')}]})
         self.samples = load_dataset('json', data_files=jsonl_path, split='train', features=features)
-        self.bos_id = tokenizer(f'{tokenizer.bos_token}assistant\n', add_special_tokens=False).input_ids
-        self.eos_id = tokenizer(f'{tokenizer.eos_token}\n',
+        self.bos_id = tokenizer(f'{tokenizer.bos_token}assi
