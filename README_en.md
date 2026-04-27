@@ -41,10 +41,7 @@
 
 > Note: This project is open-sourced under the Apache 2.0 license and is completely free. "2 hours" refers to the measured time to run `1 epoch` of the SFT stage on a single NVIDIA 3090, and "3 CNY" refers to the corresponding GPU rental cost for that duration.
 
-> **Personal note:** I'm using this fork primarily to study the GRPO and DPO training stages.
-> Key files of interest:
-> - `train_dpo.py` — DPO preference optimization training
-> - `train_grpo.py` — GRPO reward-based policy optimization
-> - `model/model.py` — core transformer architecture
->
-> My focus is on understanding how reward signals differ between DPO (implicit, from preference pairs) and GRPO (explicit, from a reward model), and how each affects the final model behavior.
+> **Personal note:** I'm using this fork primarily to study the GRPO and DPO training stages. My focus areas:
+> - **GRPO**: Understanding how group relative policy optimization differs from PPO in terms of variance reduction and reward normalization.
+> - **DPO**: Comparing DPO vs PPO stability during fine-tuning on small models like this one.
+> - I'm running experiments on a single RTX 4090 with a reduced batch size of 4 to fit within VRAM constraints.
